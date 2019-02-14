@@ -1,6 +1,6 @@
 from app import app, db
 from app.forms import LoginForm, SignUpForm
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, send_from_directory, request, jsonify
 from flask_login import current_user, login_user, logout_user
 from app.models import User
 
@@ -41,3 +41,17 @@ def signup():
         flash('Success!')
         return redirect(url_for('login'))
     return render_template('signup.html', title="Sign Up", form=form)
+
+@app.route('/exercise/<exercise_name>')
+def exercise(exercise_name):
+    return render_template('exercise.html')
+
+@app.route('/js/vs.js')
+def vs():
+    return send_from_directory('../static/', 'main.js')
+
+# This is the endpoint we recehive updates on
+@app.route('/exercise_log', methods=["POST"])
+def exercise_log():
+    print(request.data)
+    return jsonify(success=True)
