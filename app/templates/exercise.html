@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+<script src="/js/vs.js" async=false defer=false type="text/javascript"></script>
+    <div id="exerciseContainer" style=" height: 90vh; position: relative">
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function(event) {
+          document.body.style.backgroundColor = 'hsl(0, 0%, 50%)';
+          let divElem = document.getElementById("exerciseContainer");
+          window.exercises.valueScaleExercises.repeatGreyScaleEight(divElem);
+      });
+    </script>
+{% endblock %}
